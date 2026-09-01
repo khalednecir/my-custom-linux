@@ -23,9 +23,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and Push OCI Image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6   # Updated to v6 to clear Node 20 deprecation
         with:
           context: .
+          file: ./Containerfile             # Explicitly point to Containerfile
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/gaming-os:latest
 
